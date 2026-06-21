@@ -454,6 +454,21 @@ p {
   font-size: 1.5rem;
 }
 
+.mission-section .icon {
+  color: var(--white);
+  background: var(--navy);
+}
+
+.ministries-preview .icon {
+  color: var(--white);
+  background: var(--navy);
+}
+
+.about-page .icon {
+  color: var(--white);
+  background: var(--navy);
+}
+
 .muted {
   color: var(--muted);
 }
@@ -466,6 +481,18 @@ p {
     radial-gradient(circle at 50% 28%, #d9e9ad, transparent 20%),
     linear-gradient(145deg, #b8d2ae, #3f7656);
   box-shadow: var(--shadow);
+}
+
+.welcome-image {
+  background:
+    linear-gradient(160deg, rgba(18, 56, 42, 0.04), rgba(18, 56, 42, 0.34)),
+    url("../images/worship.jpg") center / cover no-repeat;
+}
+
+.about-image {
+  background:
+    linear-gradient(160deg, rgba(18, 56, 42, 0.04), rgba(18, 56, 42, 0.28)),
+    url("../images/hero2.jpg") center / cover no-repeat;
 }
 
 .stat-row {
@@ -527,6 +554,18 @@ p {
   color: var(--navy);
   font-size: 0.8rem;
   font-weight: 700;
+}
+
+.blog-thumb-image {
+  overflow: hidden;
+  height: 180px;
+  padding: 0;
+}
+
+.blog-thumb-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .featured-blog {
