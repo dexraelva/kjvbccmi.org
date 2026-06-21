@@ -101,8 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const message = form.querySelector(".form-message");
       if (message) {
-        message.textContent =
-          "Thank you! Your form is ready for a live email or form service connection.";
+        message.textContent = "Thank you! Your message has been received.";
         message.style.display = "block";
       }
 
