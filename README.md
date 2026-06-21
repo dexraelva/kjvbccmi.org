@@ -15,7 +15,13 @@ A complete responsive static website for KJV Bible Christian Church and Ministri
 
 ## How to preview
 
-Open `index.html` in your browser.
+Serve the project from its root folder, then open `/` in your browser. For example:
+
+```bash
+npx serve .
+```
+
+Pages use clean folder routes such as `/about/`, `/events/`, and `/contact/`.
 
 ## How to edit
 
