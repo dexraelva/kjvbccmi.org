@@ -1,10 +1,25 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const siteBase = window.location.hostname.endsWith("github.io") ? "/kjvbccmi.org" : "";
+
+  if (siteBase) {
+    document.querySelectorAll('a[href^="/"]').forEach((link) => {
+      link.href = `${siteBase}${link.getAttribute("href")}`;
+    });
+
+    document.querySelectorAll('img[src^="/assets/"]').forEach((image) => {
+      image.src = `${siteBase}${image.getAttribute("src")}`;
+    });
+  }
+
   const menuButton = document.querySelector(".menu-toggle");
   const navigation = document.querySelector(".nav-links");
   const backToTop = document.querySelector(".back-to-top");
   const header = document.querySelector(".navbar");
 
-  const isHomepage = window.location.pathname === "/" || window.location.pathname.endsWith("/index.html");
+  const homepagePath = siteBase ? `${siteBase}/` : "/";
+  const isHomepage =
+    window.location.pathname === homepagePath ||
+    window.location.pathname === `${homepagePath}index.html`;
 
   if (header && !isHomepage && !document.querySelector(".page-navigation")) {
     const pageNavigation = document.createElement("div");

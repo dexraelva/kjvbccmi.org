@@ -229,7 +229,7 @@ p {
   padding: clamp(5rem, 10vw, 8rem) 0;
   background:
     linear-gradient(90deg, rgba(243, 248, 237, 0.98) 0%, rgba(237, 246, 234, 0.9) 42%, rgba(223, 238, 224, 0.35) 72%, rgba(223, 238, 224, 0.1) 100%),
-    url("/assets/images/hero.svg") center right / cover no-repeat,
+    url("../images/hero.svg") center right / cover no-repeat,
     #edf6ea;
 }
 
@@ -332,43 +332,43 @@ p {
 .ministries-hero {
   background:
     linear-gradient(90deg, rgba(18, 56, 42, 0.94), rgba(18, 56, 42, 0.62)),
-    url("/assets/images/ministries.jpg") center 62% / cover no-repeat;
+    url("../images/ministries.jpg") center 62% / cover no-repeat;
 }
 
 .campgress-hero {
   background:
     linear-gradient(90deg, rgba(18, 56, 42, 0.94), rgba(18, 56, 42, 0.56)),
-    url("/assets/images/campgress.jpg") center 65% / cover no-repeat;
+    url("../images/campgress.jpg") center 65% / cover no-repeat;
 }
 
 .childrens-hero {
   background:
     linear-gradient(90deg, rgba(18, 56, 42, 0.94), rgba(18, 56, 42, 0.56)),
-    url("/assets/images/children.jpg") center / cover no-repeat;
+    url("../images/children.jpg") center / cover no-repeat;
 }
 
 .public-preaching-hero {
   background:
     linear-gradient(90deg, rgba(18, 56, 42, 0.94), rgba(18, 56, 42, 0.56)),
-    url("/assets/images/public.jpg") center / cover no-repeat;
+    url("../images/public.jpg") center / cover no-repeat;
 }
 
 .outreach-hero {
   background:
     linear-gradient(90deg, rgba(18, 56, 42, 0.94), rgba(18, 56, 42, 0.56)),
-    url("/assets/images/outreach.jpg") center / cover no-repeat;
+    url("../images/outreach.jpg") center / cover no-repeat;
 }
 
 .midnight-prayer-hero {
   background:
     linear-gradient(90deg, rgba(18, 56, 42, 0.94), rgba(18, 56, 42, 0.56)),
-    url("/assets/images/prayer.jpg") center / cover no-repeat;
+    url("../images/prayer.jpg") center / cover no-repeat;
 }
 
 .events-hero {
   background:
     linear-gradient(90deg, rgba(18, 56, 42, 0.94), rgba(18, 56, 42, 0.56)),
-    url("/assets/images/events.jpg") center 62% / cover no-repeat;
+    url("../images/events.jpg") center 62% / cover no-repeat;
 }
 
 .breadcrumb {
@@ -988,7 +988,7 @@ p {
   .hero {
     background:
       linear-gradient(rgba(243, 248, 237, 0.9), rgba(237, 246, 234, 0.9)),
-      url("/assets/images/hero.svg") center / cover no-repeat,
+      url("../images/hero.svg") center / cover no-repeat,
       #edf6ea;
   }
 
