@@ -30,6 +30,7 @@ body {
   width: 100%;
   max-width: 100%;
   margin: 0;
+  padding-top: 82px;
   overflow-x: hidden;
   color: var(--text);
   background: var(--white);
@@ -92,9 +93,11 @@ p {
 }
 
 .navbar {
-  position: sticky;
+  position: fixed;
   z-index: 1000;
   top: 0;
+  right: 0;
+  left: 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   background: rgba(18, 56, 42, 0.97);
   box-shadow: 0 4px 24px rgba(18, 56, 42, 0.18);
@@ -1534,6 +1537,14 @@ body.modal-open {
 }
 
 @media (max-width: 700px) {
+  body {
+    padding-top: 70px;
+  }
+
+  .nav-inner {
+    min-height: 70px;
+  }
+
   .featured-modal {
     padding: 0.75rem;
   }
