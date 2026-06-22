@@ -394,6 +394,12 @@ p {
     url("../images/herochurch.jpg") center 55% / cover no-repeat;
 }
 
+.about-hero {
+  background:
+    linear-gradient(90deg, rgba(18, 56, 42, 0.92), rgba(18, 56, 42, 0.48)),
+    url("../images/heroabout.jpg") center 70% / cover no-repeat;
+}
+
 .breadcrumb {
   margin-bottom: 1rem;
   color: var(--gold-light);
