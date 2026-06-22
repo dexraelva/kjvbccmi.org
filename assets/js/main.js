@@ -14,40 +14,141 @@ document.addEventListener("DOMContentLoaded", () => {
   const menuButton = document.querySelector(".menu-toggle");
   const navigation = document.querySelector(".nav-links");
   const backToTop = document.querySelector(".back-to-top");
-  const header = document.querySelector(".navbar");
 
   const homepagePath = siteBase ? `${siteBase}/` : "/";
   const isHomepage =
     window.location.pathname === homepagePath ||
     window.location.pathname === `${homepagePath}index.html`;
 
-  if (header && !isHomepage && !document.querySelector(".page-navigation")) {
-    const pageNavigation = document.createElement("div");
-    pageNavigation.className = "page-navigation";
-    pageNavigation.innerHTML = `
-      <div class="container page-navigation-inner">
-        <button class="page-nav-link page-nav-back" type="button" aria-label="Go back">
-          <span aria-hidden="true">←</span> Back
-        </button>
-        <a class="page-nav-link" href="/" aria-label="Go to homepage">
-          <span aria-hidden="true">⌂</span> Home
-        </a>
-      </div>
-    `;
-    header.insertAdjacentElement("afterend", pageNavigation);
+  if (!isHomepage) {
+    const routeLabels = {
+      about: "About Us",
+      blog: "Blog",
+      churches: "Churches",
+      contact: "Contact",
+      donate: "Donate Now",
+      events: "Events",
+      ministries: "Ministries",
+    };
+    const currentPath = window.location.pathname
+      .replace(siteBase, "")
+      .replace(/\/index\.html$/, "/");
+    const routeParts = currentPath.split("/").filter(Boolean);
+    let breadcrumb = document.querySelector(".breadcrumb");
 
-    pageNavigation.querySelector(".page-nav-back").addEventListener("click", () => {
-      if (window.history.length > 1) {
-        window.history.back();
-      } else {
-        window.location.href = "/";
+    if (!breadcrumb) {
+      const articleHeader = document.querySelector(".article-header");
+      if (articleHeader) {
+        breadcrumb = document.createElement("nav");
+        breadcrumb.className = "breadcrumb article-breadcrumb";
+        articleHeader.insertAdjacentElement("beforebegin", breadcrumb);
       }
-    });
+    }
+
+    if (breadcrumb) {
+      const existingLabels = breadcrumb.textContent
+        .split("/")
+        .map((label) => label.trim())
+        .filter(Boolean);
+      const labels = existingLabels.length > 1
+        ? existingLabels
+        : ["Home", ...routeParts.map((part) =>
+            routeLabels[part] ||
+            part.replace(/-/g, " ").replace(/\b\w/g, (letter) => letter.toUpperCase())
+          )];
+      const pageHeading = document.querySelector("h1");
+
+      if (existingLabels.length <= 1 && pageHeading && labels.length > 1) {
+        labels[labels.length - 1] = pageHeading.textContent.trim();
+      }
+
+      breadcrumb.setAttribute("aria-label", "Breadcrumb");
+      breadcrumb.textContent = "";
+
+      labels.forEach((label, index) => {
+        if (index > 0) {
+          const separator = document.createElement("span");
+          separator.className = "breadcrumb-separator";
+          separator.setAttribute("aria-hidden", "true");
+          separator.textContent = "/";
+          breadcrumb.appendChild(separator);
+        }
+
+        if (index === labels.length - 1) {
+          const current = document.createElement("span");
+          current.setAttribute("aria-current", "page");
+          current.textContent = label;
+          breadcrumb.appendChild(current);
+          return;
+        }
+
+        const link = document.createElement("a");
+        const targetParts = routeParts.slice(0, index);
+        link.href = index === 0
+          ? homepagePath
+          : `${siteBase}/${targetParts.join("/")}/`;
+        link.textContent = label;
+        breadcrumb.appendChild(link);
+      });
+    }
   }
 
   document.querySelectorAll("[data-year]").forEach((element) => {
     element.textContent = new Date().getFullYear();
   });
+
+  const featuredModal = document.querySelector("[data-featured-modal]");
+
+  if (featuredModal) {
+    const modalDialog = featuredModal.querySelector('[role="dialog"]');
+    const closeButtons = featuredModal.querySelectorAll("[data-modal-close]");
+    const storageKey = "kjvbccmi-featured-blog-seen";
+    let previousFocus = null;
+
+    const closeFeaturedModal = () => {
+      featuredModal.hidden = true;
+      document.body.classList.remove("modal-open");
+      sessionStorage.setItem(storageKey, "true");
+      previousFocus?.focus();
+    };
+
+    const openFeaturedModal = () => {
+      previousFocus = document.activeElement;
+      featuredModal.hidden = false;
+      document.body.classList.add("modal-open");
+      featuredModal.querySelector(".featured-modal-close")?.focus();
+    };
+
+    closeButtons.forEach((button) => {
+      button.addEventListener("click", closeFeaturedModal);
+    });
+
+    featuredModal.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeFeaturedModal();
+        return;
+      }
+
+      if (event.key !== "Tab" || !modalDialog) return;
+      const focusable = modalDialog.querySelectorAll(
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      );
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    });
+
+    if (!sessionStorage.getItem(storageKey)) {
+      window.setTimeout(openFeaturedModal, 700);
+    }
+  }
 
   const closeMenu = () => {
     if (!menuButton || !navigation) return;
