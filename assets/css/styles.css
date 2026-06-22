@@ -22,10 +22,15 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  overscroll-behavior-x: none;
 }
 
 body {
+  width: 100%;
+  max-width: 100%;
   margin: 0;
+  overflow-x: hidden;
   color: var(--text);
   background: var(--white);
   font-family: "Inter", Arial, sans-serif;
@@ -209,7 +214,7 @@ p {
   background-position: center right;
   background-size: cover;
   background-repeat: no-repeat;
-  animation: hero-slide-fade 18s infinite;
+  animation: hero-slide-fade 24s infinite;
 }
 
 .hero-slide::after {
@@ -234,13 +239,18 @@ p {
   animation-delay: 12s;
 }
 
+.hero-slide-4 {
+  background-image: url("../images/hero.svg");
+  animation-delay: 18s;
+}
+
 @keyframes hero-slide-fade {
   0%,
-  28% {
+  21% {
     opacity: 1;
   }
-  33%,
-  95% {
+  25%,
+  96% {
     opacity: 0;
   }
   100% {
@@ -1371,6 +1381,25 @@ body.modal-open {
   color: var(--white);
 }
 
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 0.8rem;
+}
+
+.footer-brand img {
+  width: 58px;
+  height: 58px;
+  flex: 0 0 58px;
+  border-radius: 50%;
+  object-fit: contain;
+}
+
+.footer-brand h3 {
+  margin: 0;
+}
+
 .footer-grid {
   display: grid;
   grid-template-columns: 1.5fr 0.8fr 0.9fr 1.2fr;
@@ -1395,6 +1424,19 @@ body.modal-open {
   padding-top: 1.3rem;
   border-top: 1px solid rgba(255, 255, 255, 0.12);
   font-size: 0.75rem;
+}
+
+.footer-legal {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.footer-legal a {
+  display: inline;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.82);
 }
 
 .back-to-top {
@@ -1435,6 +1477,7 @@ body.modal-open {
     right: 0;
     display: flex;
     width: min(82vw, 360px);
+    max-width: 100%;
     height: 100vh;
     padding: 6rem 2rem 2rem;
     align-items: stretch;
@@ -1443,12 +1486,12 @@ body.modal-open {
     color: var(--navy);
     background: var(--white);
     box-shadow: -12px 0 40px rgba(18, 56, 42, 0.18);
-    transform: translateX(105%);
+    transform: translate3d(105%, 0, 0);
     transition: transform 0.25s ease;
   }
 
   .nav-links.open {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
 
   .nav-links > a:not(.nav-cta) {
