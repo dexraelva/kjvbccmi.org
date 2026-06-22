@@ -102,13 +102,11 @@ document.addEventListener("DOMContentLoaded", () => {
   if (featuredModal) {
     const modalDialog = featuredModal.querySelector('[role="dialog"]');
     const closeButtons = featuredModal.querySelectorAll("[data-modal-close]");
-    const storageKey = "kjvbccmi-featured-blog-seen";
     let previousFocus = null;
 
     const closeFeaturedModal = () => {
       featuredModal.hidden = true;
       document.body.classList.remove("modal-open");
-      sessionStorage.setItem(storageKey, "true");
       previousFocus?.focus();
     };
 
@@ -145,9 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    if (!sessionStorage.getItem(storageKey)) {
-      window.setTimeout(openFeaturedModal, 700);
-    }
+    window.setTimeout(openFeaturedModal, 700);
   }
 
   const closeMenu = () => {
