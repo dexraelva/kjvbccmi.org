@@ -195,10 +195,57 @@ p {
   position: relative;
   overflow: hidden;
   padding: clamp(5rem, 10vw, 8rem) 0;
-  background:
-    linear-gradient(90deg, rgba(243, 248, 237, 0.98) 0%, rgba(237, 246, 234, 0.9) 42%, rgba(223, 238, 224, 0.35) 72%, rgba(223, 238, 224, 0.1) 100%),
-    url("../images/hero.svg") center right / cover no-repeat,
-    #edf6ea;
+  background: #edf6ea;
+}
+
+.hero-slideshow,
+.hero-slide {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-slide {
+  opacity: 0;
+  background-position: center right;
+  background-size: cover;
+  background-repeat: no-repeat;
+  animation: hero-slide-fade 18s infinite;
+}
+
+.hero-slide::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(243, 248, 237, 0.98) 0%, rgba(237, 246, 234, 0.9) 42%, rgba(223, 238, 224, 0.35) 72%, rgba(223, 238, 224, 0.1) 100%);
+  content: "";
+}
+
+.hero-slide-1 {
+  background-image: url("../images/mainbg2.svg");
+  animation-delay: 0s;
+}
+
+.hero-slide-2 {
+  background-image: url("../images/mainbg3.svg");
+  animation-delay: 6s;
+}
+
+.hero-slide-3 {
+  background-image: url("../images/mainbg4.svg");
+  animation-delay: 12s;
+}
+
+@keyframes hero-slide-fade {
+  0%,
+  28% {
+    opacity: 1;
+  }
+  33%,
+  95% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .split {
@@ -366,6 +413,12 @@ p {
   background:
     linear-gradient(90deg, rgba(18, 56, 42, 0.92), rgba(18, 56, 42, 0.48)),
     url("../images/heroabout.jpg") center 70% / cover no-repeat;
+}
+
+.contact-hero {
+  background:
+    linear-gradient(90deg, rgba(18, 56, 42, 0.92), rgba(18, 56, 42, 0.48)),
+    url("../images/herocontact.svg") center / cover no-repeat;
 }
 
 .breadcrumb {
@@ -575,6 +628,29 @@ body.modal-open {
 .mission-section .icon {
   color: var(--white);
   background: var(--navy);
+}
+
+.mission-section {
+  background:
+    linear-gradient(rgba(237, 246, 234, 0.9), rgba(237, 246, 234, 0.9)),
+    url("../images/hero.svg") center / cover no-repeat,
+    var(--soft);
+}
+
+.upcoming-events-section {
+  background:
+    linear-gradient(rgba(248, 245, 235, 0.9), rgba(248, 245, 235, 0.9)),
+    url("../images/hero.svg") center / cover no-repeat,
+    var(--cream);
+}
+
+.mission-section .section-header,
+.ministries-preview .section-header,
+.upcoming-events-section .section-header,
+.latest-blog-section .section-header {
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
 }
 
 .ministries-preview .icon {
@@ -1450,10 +1526,15 @@ body.modal-open {
   }
 
   .hero {
-    background:
-      linear-gradient(rgba(243, 248, 237, 0.9), rgba(237, 246, 234, 0.9)),
-      url("../images/hero.svg") center / cover no-repeat,
-      #edf6ea;
+    background: #edf6ea;
+  }
+
+  .hero-slide {
+    background-position: center;
+  }
+
+  .hero-slide::after {
+    background: linear-gradient(rgba(243, 248, 237, 0.9), rgba(237, 246, 234, 0.9));
   }
 
   .ministry-slide {
@@ -1515,5 +1596,14 @@ body.modal-open {
   *::after {
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .hero-slide {
+    animation: none;
+    opacity: 0;
+  }
+
+  .hero-slide-1 {
+    opacity: 1;
   }
 }
